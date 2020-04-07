@@ -17,14 +17,14 @@
 
   if(isset($_POST['submitRegister'])){
     
-    $username = sanitizeFormUsername($_POST['username']);
-    $firstName = sanitizeFormString($_POST['fName']);
-    $lastName = sanitizeFormString($_POST['lName']);
-    $email = sanitizeFormString($_POST['email']);
-    $pass = sanitizeFormPassword($_POST['pass']);
-    $pass2 = sanitizeFormPassword($_POST['pass2']);
+    $un = sanitizeFormUsername($_POST['username']);
+    $fn = sanitizeFormString($_POST['firstName']);
+    $ln = sanitizeFormString($_POST['lastName']);
+    $em = sanitizeFormString($_POST['email']);
+    $pw = sanitizeFormPassword($_POST['pass']);
+    $pw2 = sanitizeFormPassword($_POST['pass2']);
 
-    $wasSuccessful = $account->register($username, $fName, $lName, $email, $pass, $pass2);
+    $wasSuccessful = $account->register($un, $fn, $ln, $em, $pw, $pw2);
 
     if($wasSuccessful == true) {
         header("Location: index.php");    }

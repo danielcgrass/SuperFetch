@@ -66,7 +66,7 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-login100 p-b-160 p-t-50">
-          <form class="login100-form validate-form" method="POST">
+          <form class="login100-form validate-form" action="register.php" method="POST">
             <span class="login100-form-title p-b-43">
               Register Account
             </span>
@@ -75,7 +75,7 @@
               class="wrap-input100 rs1 validate-input"
               data-validate="First name is required"
             >
-              <input class="input100" type="text" name="fName" />
+              <input class="input100" type="text" name="firstName" />
               <span class="label-input100">First Name</span>
             </div>
 
@@ -83,7 +83,7 @@
               class="wrap-input100 rs2 validate-input"
               data-validate="Last Name is required"
             >
-              <input class="input100" type="text" name="lName" />
+              <input class="input100" type="text" name="lastName" />
               <span class="label-input100">Last Name</span>
             </div>
 
