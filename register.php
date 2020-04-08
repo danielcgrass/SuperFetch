@@ -1,15 +1,22 @@
 <?php
+  include("includes/config.php");
   include("includes/classes/Account.php");
   include("includes/classes/Constants.php");
 
-  $account = new Account();
+  $account = new Account($con);
 
   include("includes/handlers/register-handler.php");
+
+  function getInputValue($name) {
+    if(isset($_POST[$name])) {
+      echo $_POST[$name];
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SuperFetch - Login</title>
+    <title>SuperFetch - Register</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--===============================================================================================-->
@@ -76,7 +83,7 @@
               class="wrap-input100 rs1 validate-input"
               data-validate="First name is required"
             >
-              <input class="input100" type="text" name="firstName" />
+              <input class="input100" type="text" name="firstName"/>
               <span class="label-input100">First Name</span>
             </div>
 
@@ -146,6 +153,8 @@
              <?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
              <?php echo $account->getError(Constants::$passwordMustContain); ?>
              <?php echo $account->getError(Constants::$passwordNotEnough); ?>
+             <?php echo $account->getError(Constants::$usernameStolen); ?>
+             <?php echo $account->getError(Constants::$emailStolen); ?>
             </div>
          
           </form>

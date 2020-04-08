@@ -1,9 +1,23 @@
 <?php
     class Account{
-
+        private $con;
         private $errorArray;
 
-        public function __construct() {
+        public function login($un, $pw) {
+            $pw = md5($pw);
+
+            $query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
+            if(mysqli_num_rows($query) == 1) {
+                return true;
+            }
+            else {
+                array_push($this->errorArray, Constants::loginFailed);
+                return false;
+            }
+        }
+
+        public function __construct($con) {
+            $this->con = $con;
             $this->errorArray = array();
         }
         public function register($un, $fn, $ln, $em, $pw, $pw2) {
@@ -15,7 +29,7 @@
 
             if(empty($this->errorArray) == true){
                 //insert into DB
-                return true;
+                return $this->insertUserDetails($un, $fn, $ln, $em, $pw);
             }
             else{
                 return false;
@@ -29,12 +43,27 @@
             return "<span class='errorMessage'>$error</span>";
         }
 
+        private function insertUserDetails($un, $fn, $ln, $em, $pw){
+            $encryptedPw = md5($pw); //md 5 method is a 32 character encryption
+
+            $profilePic = "assets/images/profile-pics/blank.png";
+
+            $date = date("Y-m-d");
+
+            $results = mysqli_query($this->con, "INSERT INTO users VALUES (NULL, '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
+
+            return $results;
+        } 
+
         private function validateUsername($un){
             if(strlen($un) > 25 || strlen($un) < 5){
                 array_push($this->errorArray, Constants::$usernameNotEnough);
                 return;
             }
-            //TODO: check if username exists
+            $checkUser = mysqli_query($this->con, "SELECT username FROM users WHERE username='$un'");
+            if(mysqli_num_rows($checkUser) != 0) {
+                array_push($this->errorArray, Constants::$usernameStolen);
+            }
         }
         private function validateFirstname($fn){
             if(strlen($fn) > 25 || strlen($fn) < 2){
@@ -52,6 +81,10 @@
             if(!filter_var($em, FILTER_VALIDATE_EMAIL)){
             array_push($this->errorArray, Constants::$emailNotValid); 
             return;
+            }
+            $checkEmail = mysqli_query($this->con, "SELECT email FROM users WHERE email='$em'");
+            if(mysqli_num_rows($checkEmail) != 0){
+                array_push($this->errorArray, Constants::$emailStolen);
             }
         }
         

@@ -65,7 +65,7 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-login100 p-b-160 p-t-50">
-          <form class="login100-form validate-form" method="POST">
+          <form class="login100-form validate-form" method="POST" action="login.php">
             <span class="login100-form-title p-b-43">
               Account Login
             </span>
@@ -100,6 +100,10 @@
               <a href="register.php" class="txt1">
                 Register
               </a>
+            </div>
+
+            <div class="text-center text-white w-full p-t-23">
+             <?php echo $account->getError(Constants::$loginFailed); ?>
             </div>
           </form>
         </div>
