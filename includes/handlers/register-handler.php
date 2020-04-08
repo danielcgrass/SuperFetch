@@ -27,6 +27,9 @@
     $wasSuccessful = $account->register($un, $fn, $ln, $em, $pw, $pw2);
 
     if($wasSuccessful == true) {
-        header("Location: index.php");    }
+        header("Location: index.php");
+
+        echo $results;
+      }
   }
 ?>
