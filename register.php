@@ -1,5 +1,6 @@
 <?php
   include("includes/classes/Account.php");
+  include("includes/classes/Constants.php");
 
   $account = new Account();
 
@@ -137,14 +138,14 @@
               </a>
             </div>
 
-            <div class="text-center w-full p-t-23">
-             <?php echo $account->getError("Your username must be between 5 and 25 characters"); ?>
-             <?php echo $account->getError("Your first name must be between 2 and 25 characters"); ?>
-             <?php echo $account->getError("Your last name must be between 2 and 25 characters"); ?>
-             <?php echo $account->getError("Email is invalid"); ?>
-             <?php echo $account->getError("Your passwords don't match"); ?>
-             <?php echo $account->getError("Your password can only contain numbers and letters"); ?>
-             <?php echo $account->getError("Your password must be between 5 and 30 characters"); ?>
+            <div class="text-center text-white w-full p-t-23">
+             <?php echo $account->getError(Constants::$usernameNotEnough); ?>
+             <?php echo $account->getError(Constants::$firstNameNotEnough); ?>
+             <?php echo $account->getError(Constants::$lastNameNotEnough); ?>
+             <?php echo $account->getError(Constants::$emailNotValid); ?>
+             <?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
+             <?php echo $account->getError(Constants::$passwordMustContain); ?>
+             <?php echo $account->getError(Constants::$passwordNotEnough); ?>
             </div>
          
           </form>
