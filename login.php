@@ -1,4 +1,10 @@
 <?php
+  include("includes/config.php");
+  include("includes/classes/Account.php");
+  include("includes/classes/Constants.php");
+  
+  $account = new Account($con);
+  
   include("includes/handlers/login-handler.php");
 ?>
 
@@ -74,7 +80,7 @@
               class="wrap-input100 rs1 validate-input"
               data-validate="Username is required"
             >
-              <input class="input100" type="text" name="username" />
+              <input class="input100" type="text" name="loginUsername" id="loginUsername" />
               <span class="label-input100">Username</span>
             </div>
 
@@ -82,7 +88,7 @@
               class="wrap-input100 rs2 validate-input"
               data-validate="Password is required"
             >
-              <input class="input100" type="password" name="pass" />
+              <input class="input100" type="password" name="loginPassword" id="loginPassword" />
               <span class="label-input100">Password</span>
             </div>
 
