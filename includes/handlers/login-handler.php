@@ -1,15 +1,12 @@
 <?php
   if(isset($_POST['submitMe'])) {
-   $un = $_POST['username'];
-   $pw= $_POST['pass'];
+   $username = $_POST['loginUsername'];
+   $password= $_POST['loginPassword'];
 
-   $result = $account->login($un, $pw);
+   $result = $account->login($username, $password);
 
    if($result == true) {
-     echo "SUCCESS";
+     header("Location: index.php");
    }
-   else {
-     echo "Failure";
-   }
-   }
+  }
 ?>
