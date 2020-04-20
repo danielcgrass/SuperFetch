@@ -1,3 +1,17 @@
+<?php 
+include("includes/config.php");
+
+// session_destroy(); this code will logout a user
+
+if(isset($_SESSION['userLoggedIn'])){
+  $userLoggedIn = $_SESSION['userLoggedIn'];
+}
+else {
+  header("Location: register.php");
+}
+  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +53,35 @@
 
   <!-- Music player -->
   <nav class="navbar" id="navHead">
+    <div id="nowPlayingBar">
+      <div id="nowPlayingLeft">
  
+      </div>
+      <div id="nowPlayingCenter">
+        <div class="content playerControls">
+          <div class="buttons">
+            <button class="controlButton shuffle">
+              <img src="images/icons/shuffle.png" alt="shuffle">
+            </button>
+            <button class="controlButton shuffle">
+              <img src="images/icons/shuffle.png" alt="shuffle">
+            </button>
+            <button class="controlButton shuffle">
+              <img src="images/icons/shuffle.png" alt="shuffle">
+            </button>
+            <button class="controlButton shuffle">
+              <img src="images/icons/shuffle.png" alt="shuffle">
+            </button>
+            <button class="controlButton shuffle">
+              <img src="images/icons/shuffle.png" alt="shuffle">
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="nowPlayingRight">
+      
+      </div>
+    </div>
   </nav>
 
 
